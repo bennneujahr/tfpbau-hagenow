@@ -6,11 +6,16 @@
 <title>TFP Bau Mietpark Hagenow — Baumaschinen & Forstgeräte mieten</title>
 <meta name="description" content="Baumaschinen und Forstgeräte mieten in Hagenow: Minibagger, Holzhäcksler & mehr. Für Privat und Gewerbe. Faire Konditionen, persönliche Beratung, lokale Abholung — TFP Bau Mietpark.">
 <meta name="theme-color" content="#1b3c8c">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%231b3c8c'/%3E%3Cpath d='M3 21h18M5 21V11l5-3 5 3v10M9 21v-4h2v4M14 11l6-3v13' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <meta property="og:title" content="TFP Bau Mietpark Hagenow — Baumaschinen & Forstgeräte mieten">
 <meta property="og:description" content="Baumaschinen und Forstgeräte mieten in Hagenow — für Privat und Gewerbe. Faire Konditionen, persönliche Beratung.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
+<meta property="og:url" content="https://www.tfpbau-mietpark-hagenow.de/">
+<meta property="og:image" content="https://www.tfpbau-mietpark-hagenow.de/assets/favicon-512.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
@@ -35,8 +40,8 @@
   nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(20,40,90,.10);padding:12px 0}
   .nav-inner{display:flex;align-items:center;justify-content:space-between}
   .logo{font-size:21px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;color:var(--text)}
-  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;align-items:center;justify-content:center}
-  .logo .mark svg{width:20px;height:20px}
+  .logo .mark{width:40px;height:40px;border-radius:9px;background:none;display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0}
+  .logo .mark img{width:100%;height:100%;object-fit:contain;display:block}
   .logo .sub{color:var(--blue)}
   .logo .tag{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:.04em;display:block;line-height:1;margin-top:2px}
   .logo .stack{display:flex;flex-direction:column;line-height:1.05}
@@ -192,7 +197,7 @@
   .foot-col a,.foot-col p{display:block;font-size:15px;color:rgba(255,255,255,.78);margin-bottom:10px;transition:.2s}
   .foot-col a:hover{color:var(--yellow)}
   .foot-brand .logo{margin-bottom:14px;color:#fff}
-  .foot-brand .logo .mark{background:var(--yellow)}
+  .foot-brand .logo .mark{background:none}
   .foot-brand .logo .sub{color:var(--yellow)}
   .foot-brand .logo .tag{color:rgba(255,255,255,.6)}
   .foot-brand p{font-size:14px;max-width:300px}
@@ -242,7 +247,7 @@
 <nav id="nav">
   <div class="wrap nav-inner">
     <a href="#" class="logo">
-      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V11l5-3 5 3v10M9 21v-4h2v4M14 11l6-3v13" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="mark"><img src="assets/logo_badge.png" alt="TFP Bau Mietpark Hagenow Logo"></span>
       <span class="stack">
         <span>TFP Bau <span class="sub">Mietpark</span></span>
         <span class="tag">Hagenow · seit 1999</span>
@@ -552,7 +557,7 @@
     <div class="foot-grid">
       <div class="foot-col foot-brand">
         <a href="#" class="logo">
-          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V11l5-3 5 3v10M9 21v-4h2v4M14 11l6-3v13" stroke="#13286b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="mark"><img src="assets/logo_badge.png" alt="TFP Bau Mietpark Hagenow Logo"></span>
           <span class="stack"><span>TFP Bau <span class="sub">Mietpark</span></span><span class="tag">Hagenow · seit 1999</span></span>
         </a>
         <p>Dein Mietpark für Baumaschinen und Forstgeräte in Hagenow. Aus der Erfahrung eines Handwerksbetriebs — fair, flexibel und persönlich.</p>
@@ -587,6 +592,30 @@
     </div>
   </div>
 </footer>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "TFP Bau – Mietpark Hagenow",
+  "url": "https://www.tfpbau-mietpark-hagenow.de/",
+  "logo": "https://www.tfpbau-mietpark-hagenow.de/assets/favicon-512.png",
+  "image": "https://www.tfpbau-mietpark-hagenow.de/assets/firmenschild.jpg",
+  "description": "Baumaschinen und Forstgeräte mieten in Hagenow – für Privat und Gewerbe. Minibagger, Holzhäcksler, Rüttelplatte und mehr.",
+  "telephone": "+491721569403",
+  "email": "tfpbau.mietparkhagenow@gmail.com",
+  "foundingDate": "1999",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Rudolf-Diesel-Straße 8",
+    "postalCode": "19230",
+    "addressLocality": "Hagenow",
+    "addressRegion": "Mecklenburg-Vorpommern",
+    "addressCountry": "DE"
+  },
+  "areaServed": "Hagenow und Umgebung"
+}
+</script>
 
 <script>
   // Navbar scroll
