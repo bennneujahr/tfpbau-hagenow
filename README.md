@@ -24,7 +24,7 @@ Nach jedem Push auf `main` aktualisiert GitHub Pages die Live-Seite automatisch 
 - Echte Preise (aktuell „Preis auf Anfrage").
 - Echte Kundenbewertungen (Bewertungs-Sektion wurde bewusst entfernt).
 - Impressum & Datenschutz finalisieren (siehe ⚠️-Hinweise).
-- Anfrageformular: nutzt aktuell FormSubmit (formsubmit.co) → erste Einrichtung/Bestätigung nötig.
+- Anfrageformular: nutzt FormSubmit (formsubmit.co) → liefert an vermietung@tfpbau-mietpark-hagenow.de; erste Bestätigung nötig.
 - Optional: echtes Maschinen-/Teamfoto ergänzen.
 
 Erstellt von **Zukunft mit KI**.
