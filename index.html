@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TFP Bau Mietpark Hagenow — Baumaschinen & Forstgeräte mieten</title>
+<meta name="description" content="Baumaschinen und Forstgeräte mieten in Hagenow: Minibagger, Holzhäcksler & mehr. Für Privat und Gewerbe. Faire Konditionen, persönliche Beratung, lokale Abholung — TFP Bau Mietpark.">
+<meta name="theme-color" content="#1b3c8c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%231b3c8c'/%3E%3Cpath d='M3 21h18M5 21V11l5-3 5 3v10M9 21v-4h2v4M14 11l6-3v13' stroke='white' stroke-width='2' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<meta property="og:title" content="TFP Bau Mietpark Hagenow — Baumaschinen & Forstgeräte mieten">
+<meta property="og:description" content="Baumaschinen und Forstgeräte mieten in Hagenow — für Privat und Gewerbe. Faire Konditionen, persönliche Beratung.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef1f5; --bg-2:#e6eaf1; --surface:#ffffff; --surface-2:#f4f7fb;
+    --blue:#1b3c8c; --blue-dark:#13286b; --blue-light:#2f56b5;
+    --yellow:#ffd11a; --yellow-light:#ffe066;
+    --text:#1c2430; --text-muted:#5a6675;
+    --border:rgba(20,40,90,.12); --border-blue:rgba(27,60,140,.30);
+    --blue-dim:rgba(27,60,140,.07); --green:#2ea860;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  a{text-decoration:none;color:inherit}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+  h1,h2,h3,.logo{font-family:'Sora',sans-serif}
+
+  /* Navbar */
+  nav{position:fixed;top:0;left:0;right:0;z-index:1000;transition:.3s;padding:18px 0}
+  nav.scrolled{background:rgba(255,255,255,.92);backdrop-filter:blur(12px);box-shadow:0 2px 20px rgba(20,40,90,.10);padding:12px 0}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between}
+  .logo{font-size:21px;font-weight:800;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;color:var(--text)}
+  .logo .mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;align-items:center;justify-content:center}
+  .logo .mark svg{width:20px;height:20px}
+  .logo .sub{color:var(--blue)}
+  .logo .tag{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:var(--text-muted);letter-spacing:.04em;display:block;line-height:1;margin-top:2px}
+  .logo .stack{display:flex;flex-direction:column;line-height:1.05}
+  .nav-links{display:flex;align-items:center;gap:28px}
+  .nav-links a{font-size:15px;font-weight:500;color:var(--text-muted);transition:.2s}
+  .nav-links a:hover{color:var(--blue)}
+  .nav-cta{background:var(--blue);color:#fff !important;font-weight:700;padding:10px 20px;border-radius:9px;transition:.2s;cursor:pointer}
+  .nav-cta:hover{background:var(--blue-light);transform:translateY(-1px)}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:0;padding:6px}
+  .burger span{width:26px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+  /* Hero */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 60px;overflow:hidden}
+  .hero-bg{position:absolute;inset:0;background:
+    radial-gradient(900px 500px at 75% 18%,rgba(27,60,140,.12),transparent 60%),
+    radial-gradient(700px 600px at 8% 92%,rgba(255,209,26,.12),transparent 60%),
+    linear-gradient(160deg,#f4f6fb 0%,#e7ecf4 100%);z-index:-2}
+  .hero-grid-lines{position:absolute;inset:0;background-image:linear-gradient(rgba(20,40,90,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(20,40,90,.045) 1px,transparent 1px);background-size:54px 54px;z-index:-1;mask-image:radial-gradient(circle at 70% 40%,black,transparent 75%)}
+  .hero-inner{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  .hero-eyebrow{display:inline-flex;align-items:center;gap:9px;background:var(--blue);color:var(--yellow);font-size:13px;font-weight:700;padding:7px 15px;border-radius:30px;margin-bottom:24px}
+  .hero-eyebrow .pulse{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(46,168,96,.6);animation:pulse 2s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(46,168,96,.5)}70%{box-shadow:0 0 0 9px rgba(46,168,96,0)}100%{box-shadow:0 0 0 0 rgba(46,168,96,0)}}
+  .hero h1{font-size:clamp(36px,5.6vw,60px);font-weight:800;line-height:1.05;letter-spacing:-.02em;margin-bottom:20px;color:var(--blue-dark)}
+  .hero h1 .accent{color:var(--blue);position:relative;white-space:nowrap;z-index:1}
+  .hero h1 .accent::after{content:"";position:absolute;left:-2px;right:-2px;bottom:6px;height:12px;background:var(--yellow);opacity:.55;z-index:-1;border-radius:3px}
+  .hero p.lead{font-size:19px;color:var(--text-muted);max-width:540px;margin-bottom:18px}
+  .usp-row{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:30px}
+  .usp{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;background:var(--surface);border:1px solid var(--border);padding:8px 14px;border-radius:9px;box-shadow:0 1px 3px rgba(20,40,90,.05)}
+  .usp svg{width:17px;height:17px;color:var(--blue);flex-shrink:0}
+  .hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:30px}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:16px;padding:15px 28px;border-radius:11px;cursor:pointer;transition:.2s;border:0}
+  .btn-primary{background:var(--blue);color:#fff}
+  .btn-primary:hover{background:var(--blue-light);transform:translateY(-2px);box-shadow:0 10px 30px rgba(27,60,140,.28)}
+  .btn-ghost{background:transparent;color:var(--blue);border:1px solid var(--border-blue)}
+  .btn-ghost:hover{border-color:var(--blue);background:var(--blue-dim)}
+  .btn svg{width:19px;height:19px}
+  .hero-trust{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .hero-trust .badge-est{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--text-muted)}
+  .hero-trust .badge-est svg{width:18px;height:18px;color:var(--blue)}
+  .hero-trust .badge-est b{color:var(--text)}
+
+  /* Hero inquiry card */
+  .book-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:26px;box-shadow:0 30px 60px rgba(20,40,90,.12)}
+  .book-card h3{font-size:18px;font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:9px}
+  .book-card h3 svg{width:20px;height:20px;color:var(--blue)}
+  .book-card .sub{font-size:13px;color:var(--text-muted);margin-bottom:20px}
+  .field{margin-bottom:14px}
+  .field label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
+  .field select,.field input{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--text);font-size:15px;font-family:inherit;cursor:pointer}
+  .field select:focus,.field input:focus{outline:none;border-color:var(--blue)}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .book-card .btn-primary{width:100%;justify-content:center;margin-top:8px}
+  .book-note{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-muted);margin-top:14px;justify-content:center}
+  .book-note svg{width:14px;height:14px;color:var(--green)}
+
+  /* Section base */
+  section.sec{padding:90px 0}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto 50px}
+  .sec-eyebrow{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--blue);margin-bottom:12px}
+  .sec-head h2{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:14px;color:var(--blue-dark)}
+  .sec-head p{font-size:17px;color:var(--text-muted)}
+
+  /* Machines grid */
+  .fleet-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .fleet-card{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.25s;display:flex;flex-direction:column;box-shadow:0 2px 8px rgba(20,40,90,.05)}
+  .fleet-card:hover{transform:translateY(-6px);border-color:var(--border-blue);box-shadow:0 20px 44px rgba(20,40,90,.16)}
+  .fleet-visual{height:160px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+  .fleet-visual.v1{background:linear-gradient(135deg,#eaf0fb,#dce6f6)}
+  .fleet-visual.v2{background:linear-gradient(135deg,#eaf3ee,#dcebe3)}
+  .fleet-visual.v3{background:linear-gradient(135deg,#edf1f8,#dfe6f1)}
+  .fleet-visual.v4{background:linear-gradient(135deg,#f5f1ea,#ebe3d6)}
+  .fleet-visual.v5{background:linear-gradient(135deg,#edeff6,#dfe3ee)}
+  .fleet-visual svg{width:96px;height:96px;color:rgba(27,60,140,.32)}
+  .fleet-visual.v1 svg,.fleet-visual.v2 svg{color:rgba(27,60,140,.48)}
+  .fleet-visual .price-tag{position:absolute;bottom:12px;right:12px;background:var(--yellow);color:var(--blue-dark);font-weight:800;font-size:13px;padding:6px 12px;border-radius:8px}
+  .fleet-body{padding:22px;flex:1;display:flex;flex-direction:column}
+  .fleet-body h3{font-size:20px;font-weight:700;margin-bottom:7px;color:var(--blue-dark)}
+  .fleet-body p{font-size:14px;color:var(--text-muted);margin-bottom:16px;flex:1}
+  .fleet-tags{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:18px}
+  .fleet-tags span{font-size:12px;font-weight:600;background:var(--surface-2);border:1px solid var(--border);padding:5px 10px;border-radius:7px;color:var(--text-muted)}
+  .fleet-link{display:inline-flex;align-items:center;gap:7px;font-weight:700;font-size:15px;color:var(--blue)}
+  .fleet-link svg{width:16px;height:16px;transition:.2s}
+  .fleet-card:hover .fleet-link svg{transform:translateX(4px)}
+  .fleet-card.highlight{border-color:var(--border-blue)}
+  .hl-badge{position:absolute;top:12px;left:12px;z-index:2;background:var(--yellow);color:var(--blue-dark);font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:5px 11px;border-radius:20px;display:flex;align-items:center;gap:5px}
+  .hl-badge svg{width:12px;height:12px}
+  .fleet-note{text-align:center;margin-top:28px;font-size:14px;color:var(--text-muted)}
+  .fleet-note svg{width:15px;height:15px;color:var(--blue);vertical-align:-2px;margin-right:5px}
+
+  /* Trust band */
+  .trust-band{background:var(--blue)}
+  .trust-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:48px 0}
+  .trust-stat{text-align:center}
+  .trust-stat .num{font-family:'Sora',sans-serif;font-size:34px;font-weight:800;color:var(--yellow);line-height:1.1}
+  .trust-stat .lbl{font-size:14px;color:rgba(255,255,255,.82);margin-top:8px}
+
+  /* Why us / features */
+  .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .feat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:26px;transition:.2s;box-shadow:0 2px 8px rgba(20,40,90,.05)}
+  .feat:hover{border-color:var(--border-blue);transform:translateY(-3px)}
+  .feat .ico{width:48px;height:48px;border-radius:12px;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+  .feat .ico svg{width:24px;height:24px;color:var(--blue)}
+  .feat h3{font-size:18px;font-weight:700;margin-bottom:8px;color:var(--blue-dark)}
+  .feat p{font-size:14px;color:var(--text-muted)}
+
+  /* About */
+  .about-inner{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+  .about-text h2{font-size:clamp(26px,3.6vw,38px);font-weight:800;letter-spacing:-.02em;margin-bottom:18px;color:var(--blue-dark)}
+  .about-text p{font-size:16px;color:var(--text-muted);margin-bottom:16px}
+  .about-text p b{color:var(--text)}
+  .timeline{list-style:none;margin-top:8px}
+  .timeline li{position:relative;padding-left:30px;margin-bottom:20px}
+  .timeline li::before{content:"";position:absolute;left:0;top:4px;width:14px;height:14px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 4px var(--blue-dim)}
+  .timeline li::after{content:"";position:absolute;left:6px;top:18px;bottom:-20px;width:2px;background:var(--border)}
+  .timeline li:last-child::after{display:none}
+  .timeline .yr{font-family:'Sora',sans-serif;font-weight:800;color:var(--blue);font-size:16px;display:block;margin-bottom:2px}
+  .timeline .ev{font-size:15px;color:var(--text-muted)}
+  .about-photo{width:100%;border-radius:18px;border:1px solid var(--border);box-shadow:0 16px 40px rgba(20,40,90,.14);margin-bottom:24px;display:block}
+  .about-photo-cap{font-size:12px;color:var(--text-muted);text-align:center;margin:-12px 0 24px}
+  .owner-card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:0 2px 10px rgba(20,40,90,.06)}
+  .owner-card .owner-top{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+  .owner-card .avatar{width:60px;height:60px;border-radius:14px;background:linear-gradient(135deg,var(--blue),var(--blue-light));display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:800;color:#fff;font-size:22px;flex-shrink:0}
+  .owner-card .owner-top .nm{font-family:'Sora',sans-serif;font-weight:700;font-size:18px;color:var(--blue-dark)}
+  .owner-card .owner-top .rl{font-size:14px;color:var(--text-muted)}
+  .owner-card .quote{font-size:16px;color:#2a3340;line-height:1.65;margin-bottom:22px}
+  .owner-card .skills{display:flex;flex-wrap:wrap;gap:8px}
+  .owner-card .skills span{font-size:12px;font-weight:600;background:var(--surface-2);border:1px solid var(--border);padding:6px 11px;border-radius:7px;color:var(--text-muted)}
+
+  /* FAQ */
+  .faq-wrap{max-width:760px;margin:0 auto}
+  .faq-item{background:var(--surface);border:1px solid var(--border);border-radius:12px;margin-bottom:12px;overflow:hidden;box-shadow:0 1px 4px rgba(20,40,90,.04)}
+  .faq-q{width:100%;text-align:left;background:none;border:0;color:var(--text);font-family:inherit;font-size:17px;font-weight:600;padding:20px 22px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .faq-q .chev{width:22px;height:22px;color:var(--blue);flex-shrink:0;transition:.3s}
+  .faq-item.open .chev{transform:rotate(180deg)}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+  .faq-a-inner{padding:0 22px 20px;color:var(--text-muted);font-size:15px}
+
+  /* CTA band */
+  .cta-band{background:linear-gradient(135deg,var(--blue) 0%,var(--blue-dark) 100%);border-radius:24px;padding:56px 48px;text-align:center;position:relative;overflow:hidden}
+  .cta-band::before{content:"";position:absolute;top:-100px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(255,209,26,.22),transparent 70%)}
+  .cta-band h2{font-size:clamp(28px,4vw,40px);font-weight:800;margin-bottom:14px;position:relative;color:#fff}
+  .cta-band p{font-size:18px;color:rgba(255,255,255,.85);margin-bottom:28px;position:relative}
+  .cta-band .hero-ctas{justify-content:center;position:relative;margin-bottom:0}
+  .cta-band .btn-primary{background:var(--yellow);color:var(--blue-dark)}
+  .cta-band .btn-primary:hover{background:var(--yellow-light);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .cta-band .btn-ghost{color:#fff;border-color:rgba(255,255,255,.5)}
+  .cta-band .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.12)}
+
+  /* Footer */
+  footer{background:var(--blue-dark);padding:60px 0 30px;margin-top:90px;color:rgba(255,255,255,.78)}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.1fr;gap:36px;margin-bottom:40px}
+  .foot-col h4{font-size:14px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:rgba(255,255,255,.65);margin-bottom:16px}
+  .foot-col a,.foot-col p{display:block;font-size:15px;color:rgba(255,255,255,.78);margin-bottom:10px;transition:.2s}
+  .foot-col a:hover{color:var(--yellow)}
+  .foot-brand .logo{margin-bottom:14px;color:#fff}
+  .foot-brand .logo .mark{background:var(--yellow)}
+  .foot-brand .logo .sub{color:var(--yellow)}
+  .foot-brand .logo .tag{color:rgba(255,255,255,.6)}
+  .foot-brand p{font-size:14px;max-width:300px}
+  .foot-contact-item{display:flex;align-items:flex-start;gap:9px;margin-bottom:10px;font-size:15px;color:rgba(255,255,255,.78)}
+  .foot-contact-item svg{width:17px;height:17px;color:var(--yellow);flex-shrink:0;margin-top:3px}
+  .foot-contact-item a{display:inline;margin:0}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.15);padding-top:24px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:13px;color:rgba(255,255,255,.6)}
+  .foot-bottom a:hover{color:var(--yellow)}
+
+  /* WhatsApp float */
+  .wa-float{position:fixed;bottom:24px;right:24px;z-index:1500;width:60px;height:60px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(37,211,102,.4);transition:.2s;cursor:pointer}
+  .wa-float:hover{transform:scale(1.08)}
+  .wa-float svg{width:32px;height:32px;color:#fff}
+  .wa-float .tip{position:absolute;right:72px;background:var(--surface);border:1px solid var(--border);color:var(--text);font-size:14px;font-weight:600;padding:9px 14px;border-radius:10px;white-space:nowrap;opacity:0;pointer-events:none;transition:.2s;box-shadow:0 6px 18px rgba(20,40,90,.12)}
+  .wa-float:hover .tip{opacity:1}
+
+  @media(max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:40px}
+    .book-card{max-width:440px}
+    .fleet-grid{grid-template-columns:1fr}
+    .why-grid{grid-template-columns:1fr 1fr}
+    .about-inner{grid-template-columns:1fr;gap:34px}
+    .trust-inner{grid-template-columns:1fr 1fr;gap:32px}
+    .foot-grid{grid-template-columns:1fr 1fr}
+    .nav-links{display:none}
+    .burger{display:flex}
+  }
+  @media(max-width:520px){
+    .field-row{grid-template-columns:1fr}
+    .why-grid{grid-template-columns:1fr}
+    .foot-grid{grid-template-columns:1fr}
+    .cta-band{padding:40px 24px}
+    .hero-ctas .btn{width:100%;justify-content:center}
+  }
+  @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+</style>
+</head>
+<body>
+
+<!-- WhatsApp Float -->
+<a class="wa-float" href="https://wa.me/491721569403" target="_blank" rel="noopener" aria-label="WhatsApp Kontakt">
+  <span class="tip">Schreib uns bei WhatsApp</span>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.477-.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.241-.579-.486-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="wrap nav-inner">
+    <a href="#" class="logo">
+      <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V11l5-3 5 3v10M9 21v-4h2v4M14 11l6-3v13" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      <span class="stack">
+        <span>TFP Bau <span class="sub">Mietpark</span></span>
+        <span class="tag">Hagenow · seit 1999</span>
+      </span>
+    </a>
+    <div class="nav-links">
+      <a href="#mietpark">Mietpark</a>
+      <a href="#vorteile">Vorteile</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#anfragen" class="nav-cta">Maschine anfragen</a>
+    </div>
+    <button class="burger" aria-label="Menü"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <div class="hero-eyebrow"><span class="pulse"></span> Baumaschinen & Forstgeräte mieten in Hagenow</div>
+      <h1>Die richtige Maschine für dein <span class="accent">Projekt</span> — flexibel gemietet.</h1>
+      <p class="lead">Vom Minibagger bis zum leistungsstarken Holzhäcksler: Im TFP Bau Mietpark findest du moderne Baumaschinen und Forstgeräte zur flexiblen Miete. Für Gewerbe und Privatpersonen — mit fairen Konditionen und persönlicher Beratung.</p>
+      <div class="usp-row">
+        <div class="usp"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Privat &amp; Gewerbe</div>
+        <div class="usp"><svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Faire Konditionen</div>
+        <div class="usp"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M4 21V8l8-5 8 5v13M9 21v-6h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Abholung in Hagenow</div>
+      </div>
+      <div class="hero-ctas">
+        <a href="#anfragen" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Maschine anfragen
+        </a>
+        <a href="tel:+491721569403" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          0172 1569403
+        </a>
+      </div>
+      <div class="hero-trust">
+        <span class="badge-est"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg> <span><b>Handwerksbetrieb seit 1999</b> · Mietpark seit 2018</span></span>
+      </div>
+    </div>
+
+    <!-- Inquiry widget -->
+    <div class="book-card" id="anfragen">
+      <h3><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Maschine anfragen</h3>
+      <p class="sub">In 30 Sekunden zur unverbindlichen Anfrage — wir melden uns schnellstmöglich.</p>
+      <form action="https://formsubmit.co/tfpbau.mietparkhagenow@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="Neue Mietanfrage über die Website">
+        <input type="text" name="_honey" style="display:none">
+        <div class="field">
+          <label for="gtype">Gerät</label>
+          <select id="gtype" name="Gerät">
+            <option>Minibagger</option>
+            <option>Holzhäcksler</option>
+            <option>Rüttelplatte / Stampfer</option>
+            <option>Stromerzeuger</option>
+            <option>Anhänger</option>
+            <option>Anderes / weiß noch nicht</option>
+          </select>
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="from">Von</label>
+            <input type="date" id="from" name="Von">
+          </div>
+          <div class="field">
+            <label for="to">Bis</label>
+            <input type="date" id="to" name="Bis">
+          </div>
+        </div>
+        <div class="field">
+          <label for="contact">Telefon oder E-Mail für Rückmeldung</label>
+          <input type="text" id="contact" name="Kontakt" placeholder="z. B. 0170 1234567" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Unverbindlich anfragen</button>
+      </form>
+      <div class="book-note"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Unverbindlich · keine Vorabzahlung</div>
+    </div>
+  </div>
+</header>
+
+<!-- TRUST BAND -->
+<div class="trust-band">
+  <div class="wrap trust-inner">
+    <div class="trust-stat"><div class="num">seit 1999</div><div class="lbl">Handwerksbetrieb</div></div>
+    <div class="trust-stat"><div class="num">2018</div><div class="lbl">Mietpark gegründet</div></div>
+    <div class="trust-stat"><div class="num">Privat + Gewerbe</div><div class="lbl">für alle Kunden</div></div>
+    <div class="trust-stat"><div class="num">Hagenow</div><div class="lbl">lokal vor Ort</div></div>
+  </div>
+</div>
+
+<!-- MIETPARK / MACHINES -->
+<section class="sec" id="mietpark">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Unser Mietpark</div>
+      <h2>Moderne Maschinen für Bau, Garten &amp; Forst</h2>
+      <p>Ob Erdarbeiten, Gartenprojekt oder Holzarbeiten — wähle dein Gerät und frag unverbindlich an.</p>
+    </div>
+    <div class="fleet-grid">
+
+      <div class="fleet-card highlight">
+        <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Beliebt</span>
+        <div class="fleet-visual v1">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 19h9v-3H4l-1 3zM12 16l2-7 5 2-1.5 5M14 9l3-4 3 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="20" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="20" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="price-tag">Preis auf Anfrage</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Minibagger</h3>
+          <p>Kompakt und wendig für Erd- und Grabarbeiten — ideal für Garten-, Landschafts- und Tiefbau auf engem Raum.</p>
+          <div class="fleet-tags"><span>Erdarbeiten</span><span>kompakt</span><span>Privat &amp; Gewerbe</span></div>
+          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="fleet-card highlight">
+        <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Highlight</span>
+        <div class="fleet-visual v2">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 8l6-3 2 4M9 5l-2 6h6l2-5M14 6h5a2 2 0 012 2v6a2 2 0 01-2 2h-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="18" r="2.4" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="18" r="2.4" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="price-tag">Preis auf Anfrage</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Holzhäcksler</h3>
+          <p>Leistungsstark für Garten- und Landschaftsbau. Verwandelt Äste und Grünschnitt schnell in handliches Häckselgut.</p>
+          <div class="fleet-tags"><span>Forst &amp; Garten</span><span>leistungsstark</span><span>Grünschnitt</span></div>
+          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="fleet-visual v3">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="13" width="16" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 13V9a4 4 0 018 0v4M10 22h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="price-tag">Preis auf Anfrage</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Rüttelplatte / Stampfer</h3>
+          <p>Für die zuverlässige Verdichtung von Boden, Schotter und Pflasterflächen — Pflicht bei jedem stabilen Untergrund.</p>
+          <div class="fleet-tags"><span>Verdichtung</span><span>Pflasterbau</span></div>
+          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="fleet-visual v4">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span class="price-tag">Preis auf Anfrage</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Stromerzeuger</h3>
+          <p>Mobile Stromversorgung für Baustelle, Werkstatt oder Veranstaltung — überall dort, wo kein Netz verfügbar ist.</p>
+          <div class="fleet-tags"><span>netzunabhängig</span><span>Baustelle</span></div>
+          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="fleet-visual v5">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M2 15h14V9H2zM16 12h3l3 3M2 18h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span class="price-tag">Preis auf Anfrage</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Anhänger</h3>
+          <p>Zum sicheren Transport von Maschinen, Material oder Grünschnitt — passend zu deinem Mietgerät dazubuchen.</p>
+          <div class="fleet-tags"><span>Transport</span><span>Zubehör</span></div>
+          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <div class="fleet-card">
+        <div class="fleet-visual v3">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </div>
+        <div class="fleet-body">
+          <h3>Dein Gerät nicht dabei?</h3>
+          <p>Unser Mietpark wächst stetig. Sag uns einfach, was du für dein Projekt brauchst — wir beraten dich gern persönlich.</p>
+          <div class="fleet-tags"><span>persönliche Beratung</span></div>
+          <a href="#kontakt" class="fleet-link">Jetzt fragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="sec" id="vorteile" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Warum TFP Bau Mietpark</div>
+      <h2>Mieten ohne Kleingedrucktes</h2>
+    </div>
+    <div class="why-grid">
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Faire Konditionen</h3>
+        <p>Klare Absprachen ohne versteckte Gebühren. Du weißt vorher, woran du bist.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h3>Privat &amp; Gewerbe</h3>
+        <p>Vom Hausbesitzer bis zur Baufirma — bei uns mietet jeder zu denselben fairen Bedingungen.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></div>
+        <h3>Persönliche Beratung</h3>
+        <p>Welche Maschine passt zu deinem Projekt? Wir beraten dich ehrlich — per Telefon oder WhatsApp.</p>
+      </div>
+      <div class="feat">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/></svg></div>
+        <h3>Lokal in Hagenow</h3>
+        <p>Kurze Wege, schnelle Übergabe vor Ort in der Rudolf-Diesel-Straße. Kein langes Anreisen nötig.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="sec" id="ueber-uns" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="wrap">
+    <div class="about-inner">
+      <div class="about-text">
+        <div class="sec-eyebrow">Über uns</div>
+        <h2>Handwerk seit 1999 — Mietpark seit 2018</h2>
+        <p>TFP Bau wurde <b>1999 als Handwerksbetrieb</b> gegründet und steht seither für professionelle Ausbauarbeiten und handwerkliche Präzision im <b>Trockenbau</b> und in der <b>Dämmung</b> — Kälte-, Wärme-, Schall- und Erschütterungsschutz.</p>
+        <p>2018 haben wir unser Angebot um den <b>Mietpark Hagenow</b> erweitert: moderne Baumaschinen und Forstgeräte zur flexiblen Miete für Gewerbe und Privatpersonen. So profitierst du von der Erfahrung eines echten Baubetriebs — bei jeder Maschine, die du bei uns mietest.</p>
+        <ul class="timeline">
+          <li><span class="yr">1999</span><span class="ev">Gründung als Handwerksbetrieb für Trockenbau &amp; Dämmung</span></li>
+          <li><span class="yr">2018</span><span class="ev">Erweiterung um den Mietpark Hagenow — Baumaschinen &amp; Forstgeräte</span></li>
+          <li><span class="yr">Heute</span><span class="ev">Verlässlicher Partner für Bau-, Garten- und Forstprojekte in der Region</span></li>
+        </ul>
+      </div>
+      <div>
+        <img class="about-photo" src="assets/firmenschild.jpg" alt="Firmenschild TFP Bau – Mietpark Hagenow: Vermietung von Anhängern, Baumaschinen, Hubsteigern und Werkzeug">
+        <div class="about-photo-cap">Unser Standort in der Rudolf-Diesel-Straße 8, Hagenow</div>
+        <div class="owner-card">
+          <div class="owner-top">
+            <div class="avatar">VA</div>
+            <div>
+              <div class="nm">Vachik Asryan</div>
+              <div class="rl">Inhaber · TFP Bau Mietpark Hagenow</div>
+            </div>
+          </div>
+          <p class="quote">„Als Handwerksbetrieb wissen wir, worauf es auf der Baustelle ankommt. Genau diese Erfahrung steckt in jeder Maschine, die wir vermieten — verlässlich, gepflegt und fair im Preis."</p>
+          <div class="skills">
+            <span>Trockenbau</span><span>Dämmung</span><span>Baumaschinen-Verleih</span><span>Forstgeräte</span><span>Beratung</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sec" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="sec-eyebrow">Häufige Fragen</div>
+      <h2>Gut zu wissen</h2>
+    </div>
+    <div class="faq-wrap">
+      <div class="faq-item">
+        <button class="faq-q">Brauche ich einen Führerschein oder Anhänger?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Die meisten unserer Geräte werden ohne speziellen Führerschein bedient. Für den Transport beraten wir dich gern — passende Anhänger kannst du bei uns direkt mitmieten. Sprich uns einfach an.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Wie hoch ist die Kaution?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Die Kaution richtet sich nach Gerät und Mietdauer. Den genauen Betrag nennen wir dir transparent bei der Anfrage — keine versteckten Überraschungen.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Liefert ihr die Maschinen oder hole ich sie ab?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Abholung ist bei uns am Standort in der Rudolf-Diesel-Straße 8 in Hagenow möglich. Für größere Geräte sprich uns auf eine Lieferung an — wir finden eine Lösung.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Kann ich die Mietdauer verlängern?<svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="faq-a"><div class="faq-a-inner">Ja, kein Problem — solange das Gerät nicht anderweitig reserviert ist. Melde dich einfach rechtzeitig per Telefon oder WhatsApp, dann verlängern wir unkompliziert.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section class="sec" id="kontakt" style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band">
+      <h2>Maschine für dein Projekt sichern</h2>
+      <p>Sag uns, was du brauchst — wir melden uns schnellstmöglich mit Verfügbarkeit und Preis.</p>
+      <div class="hero-ctas">
+        <a href="#anfragen" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Maschine anfragen
+        </a>
+        <a href="tel:+491721569403" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+          0172 1569403
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col foot-brand">
+        <a href="#" class="logo">
+          <span class="mark"><svg viewBox="0 0 24 24" fill="none"><path d="M3 21h18M5 21V11l5-3 5 3v10M9 21v-4h2v4M14 11l6-3v13" stroke="#13286b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="stack"><span>TFP Bau <span class="sub">Mietpark</span></span><span class="tag">Hagenow · seit 1999</span></span>
+        </a>
+        <p>Dein Mietpark für Baumaschinen und Forstgeräte in Hagenow. Aus der Erfahrung eines Handwerksbetriebs — fair, flexibel und persönlich.</p>
+      </div>
+      <div class="foot-col">
+        <h4>Mietpark</h4>
+        <a href="#mietpark">Minibagger</a>
+        <a href="#mietpark">Holzhäcksler</a>
+        <a href="#mietpark">Rüttelplatte &amp; mehr</a>
+        <a href="#anfragen">Maschine anfragen</a>
+      </div>
+      <div class="foot-col">
+        <h4>Unternehmen</h4>
+        <a href="#ueber-uns">Über uns</a>
+        <a href="#vorteile">Vorteile</a>
+        <a href="#faq">FAQ</a>
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+      </div>
+      <div class="foot-col">
+        <h4>Kontakt</h4>
+        <div class="foot-contact-item"><svg viewBox="0 0 24 24" fill="none"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0118 0z" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.8"/></svg> Rudolf-Diesel-Straße 8,<br>19230 Hagenow</div>
+        <div class="foot-contact-item"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> <a href="tel:+491721569403">0172 1569403 (mobil)</a></div>
+        <div class="foot-contact-item"><svg viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3.1-8.7A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.4 1.8.7 2.7a2 2 0 01-.5 2.1L8.1 9.8a16 16 0 006 6l1.3-1.3a2 2 0 012.1-.4c.9.3 1.8.6 2.7.7a2 2 0 011.7 2z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> <a href="tel:+493883622727">03883 622727 (Festnetz)</a></div>
+        <div class="foot-contact-item"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M3 7l9 6 9-6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> <a href="mailto:tfpbau.mietparkhagenow@gmail.com">tfpbau.mietparkhagenow@gmail.com</a></div>
+        <div class="foot-contact-item"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg> <a href="https://wa.me/491721569403" target="_blank" rel="noopener">WhatsApp 0172 1569403</a></div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <div>© 2026 TFP Bau Mietpark Hagenow · Inhaber Vachik Asryan · Alle Rechte vorbehalten</div>
+      <div>Website erstellt von <a href="#" style="color:var(--yellow);font-weight:600">Zukunft mit KI</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    if (window.scrollY > 30) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(q){
+    q.addEventListener('click', function(){
+      var item = q.parentElement;
+      var ans = q.nextElementSibling;
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(i){
+        i.classList.remove('open');
+        i.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen){
+        item.classList.add('open');
+        ans.style.maxHeight = ans.scrollHeight + 'px';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
