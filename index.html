@@ -331,21 +331,67 @@
         <input type="hidden" name="_subject" value="Neue Mietanfrage über die Website">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="Gewünschtes Gerät" id="wunschgeraet" value="">
         <input type="text" name="_honey" style="display:none">
         <div class="field">
           <label for="gtype">Gerät</label>
           <select id="gtype" name="Gerät">
             <option value="">Bitte wählen …</option>
-            <option>Bagger</option>
-            <option>Radlader &amp; Teleskoplader</option>
-            <option>Arbeitsbühne</option>
-            <option>Säge / Schneider</option>
-            <option>Schleifen / Fräsen / Verdichten</option>
-            <option>Garten &amp; Forst</option>
-            <option>Transport &amp; Heben</option>
-            <option>Strom &amp; Baustelle</option>
-            <option>Anhänger &amp; Transporter</option>
+            <optgroup label="Bagger">
+              <option>Minibagger Kubota U10</option>
+              <option>Minibagger Kubota U27-4</option>
+              <option>Minibagger Takeuchi TB 216 (1,6 t)</option>
+              <option>Minibagger Kubota KX 060</option>
+            </optgroup>
+            <optgroup label="Radlader &amp; Teleskoplader">
+              <option>Radlader Liebherr L 506</option>
+              <option>Radlader Kramer 5035</option>
+              <option>Teleskoplader Kramer 1245</option>
+              <option>Roto-Teleskoplader Merlo 38.16</option>
+            </optgroup>
+            <optgroup label="Arbeitsbühne">
+              <option>Arbeitsbühne Magni DAB 18 RT</option>
+              <option>Anhänger-Arbeitsbühne Dino 180XT</option>
+            </optgroup>
+            <optgroup label="Säge / Schneider">
+              <option>Steintrennsäge Clipper Jumbo 651</option>
+              <option>Stein-Bandsäge</option>
+              <option>Fliesenschneider Clipper TR 202</option>
+              <option>Nassschneider Clipper CM 352</option>
+              <option>Fugenschneider Norton CS 451</option>
+              <option>Steinschneider Clipper CM (Gehrung)</option>
+            </optgroup>
+            <optgroup label="Schleifen / Fräsen / Verdichten">
+              <option>Beton-Flaschenrüttler</option>
+              <option>Rüttelplatte 75–710 kg</option>
+              <option>Boden-Schleifmaschine</option>
+              <option>Beton-Schleifmaschine / Fräse</option>
+            </optgroup>
+            <optgroup label="Garten &amp; Forst">
+              <option>Stihl BT 131 Erdbohrer</option>
+              <option>Holzhäcksler (bis Ø 150 mm)</option>
+            </optgroup>
+            <optgroup label="Transport &amp; Heben">
+              <option>Akku-Hubwagen 1.500 kg</option>
+              <option>Mini-Dumper Muck-Truck Max II</option>
+            </optgroup>
+            <optgroup label="Strom &amp; Baustelle">
+              <option>Stromerzeuger 8 kW (Benzin)</option>
+              <option>Bautrockner / Luftentfeuchter</option>
+              <option>Bau-WC-Container (Doppelkabine)</option>
+            </optgroup>
+            <optgroup label="Anhänger &amp; Transporter">
+              <option>Autotransporter-Anhänger 3,5 t</option>
+              <option>Kofferanhänger 750 kg</option>
+              <option>Transporter MB Sprinter 317</option>
+              <option>Anhänger 2,5 t</option>
+              <option>Planenanhänger 3,5 t (6,10 m)</option>
+              <option>Kofferanhänger 2,7 t</option>
+              <option>Autotransporter-Anhänger 3,5 t (6,10 m)</option>
+              <option>Baumaschinen-Anhänger 3,5 t</option>
+              <option>Planenanhänger 3,5 t (4,05 m)</option>
+              <option>Schwerlast-Anhänger 3,5 t (3-Achser)</option>
+              <option>Planenanhänger 2.000 kg</option>
+            </optgroup>
             <option>Anderes / weiß noch nicht</option>
           </select>
         </div>
@@ -1152,12 +1198,11 @@
         apply(b.getAttribute('data-filter'));
       });
     });
-    var sel=document.getElementById('gtype'), wunsch=document.getElementById('wunschgeraet');
+    var sel=document.getElementById('gtype');
     document.querySelectorAll('.fleet-link[data-geraet]').forEach(function(a){
       a.addEventListener('click',function(){
-        var name=a.getAttribute('data-geraet'), cat=a.getAttribute('data-cat-label');
-        if(wunsch) wunsch.value=name;
-        if(sel&&cat){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].text===cat){ sel.selectedIndex=i; break; } } }
+        var name=a.getAttribute('data-geraet');
+        if(sel&&name){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].text===name){ sel.selectedIndex=i; break; } } }
       });
     });
     apply('all');
