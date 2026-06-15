@@ -98,6 +98,13 @@
   .book-card .btn-primary{width:100%;justify-content:center;margin-top:8px}
   .book-note{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-muted);margin-top:14px;justify-content:center}
   .book-note svg{width:14px;height:14px;color:var(--green)}
+  .book-success{text-align:center;padding:18px 4px 8px}
+  .book-success .ok{width:56px;height:56px;border-radius:50%;background:var(--blue-dim);display:flex;align-items:center;justify-content:center;margin:0 auto 16px}
+  .book-success .ok svg{width:30px;height:30px;color:var(--green)}
+  .book-success h4{font-family:'Sora',sans-serif;font-size:20px;font-weight:800;color:var(--blue-dark);margin-bottom:8px}
+  .book-success p{font-size:14px;color:var(--text-muted)}
+  .book-error{margin-top:14px;font-size:13px;color:#c0392b;text-align:center;line-height:1.5}
+  .book-error a{color:#c0392b;font-weight:700;text-decoration:underline}
 
   /* Section base */
   section.sec{padding:90px 0}
@@ -320,8 +327,10 @@
     <div class="book-card" id="anfragen">
       <h3><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Maschine anfragen</h3>
       <p class="sub">In 30 Sekunden zur unverbindlichen Anfrage — wir melden uns schnellstmöglich.</p>
-      <form action="https://formsubmit.co/vermietung@tfpbau-mietpark-hagenow.de" method="POST">
+      <form id="rentForm" action="https://formsubmit.co/vermietung@tfpbau-mietpark-hagenow.de" method="POST">
         <input type="hidden" name="_subject" value="Neue Mietanfrage über die Website">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="Gewünschtes Gerät" id="wunschgeraet" value="">
         <input type="text" name="_honey" style="display:none">
         <div class="field">
@@ -356,6 +365,12 @@
         </div>
         <button type="submit" class="btn btn-primary">Unverbindlich anfragen</button>
       </form>
+      <p id="rentError" class="book-error" hidden>Das Absenden hat leider nicht geklappt. Bitte ruf uns kurz an: <a href="tel:+491721569403">0172 1569403</a> oder schreib an <a href="mailto:vermietung@tfpbau-mietpark-hagenow.de">vermietung@tfpbau-mietpark-hagenow.de</a>.</p>
+      <div id="rentSuccess" class="book-success" hidden>
+        <div class="ok"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <h4>Vielen Dank für deine Anfrage!</h4>
+        <p>Wir haben deine Anfrage erhalten und melden uns schnellstmöglich bei dir zurück.</p>
+      </div>
       <div class="book-note"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Unverbindlich · keine Vorabzahlung</div>
     </div>
   </div>
@@ -1163,6 +1178,42 @@
         navLinks.classList.remove('open');
         burger.classList.remove('open');
         burger.setAttribute('aria-expanded','false');
+      });
+    });
+  })();
+
+  // Mietanfrage im Hintergrund senden (FormSubmit AJAX) + In-Page-Bestätigung
+  (function(){
+    var form=document.getElementById('rentForm');
+    if(!form) return;
+    var btn=form.querySelector('button[type="submit"]');
+    var success=document.getElementById('rentSuccess');
+    var errEl=document.getElementById('rentError');
+    var note=document.querySelector('#anfragen .book-note');
+    var endpoint='https://formsubmit.co/ajax/vermietung@tfpbau-mietpark-hagenow.de';
+    form.addEventListener('submit',function(e){
+      e.preventDefault();
+      if(errEl) errEl.hidden=true;
+      var orig=btn.textContent;
+      btn.disabled=true; btn.textContent='Wird gesendet …';
+      fetch(endpoint,{
+        method:'POST',
+        headers:{'Accept':'application/json'},
+        body:new FormData(form)
+      })
+      .then(function(r){ return r.json(); })
+      .then(function(data){
+        if(data && (data.success===true||data.success==='true')){
+          form.hidden=true;
+          if(note) note.hidden=true;
+          if(success){ success.hidden=false; success.scrollIntoView({behavior:'smooth',block:'nearest'}); }
+        } else {
+          throw new Error('FormSubmit lieferte keinen Erfolg zurück');
+        }
+      })
+      .catch(function(){
+        btn.disabled=false; btn.textContent=orig;
+        if(errEl) errEl.hidden=false;
       });
     });
   })();
