@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TFP Bau Mietpark Hagenow — Baumaschinen & Forstgeräte mieten</title>
-<meta name="description" content="Baumaschinen und Forstgeräte mieten in Hagenow: Minibagger, Holzhäcksler & mehr. Für Privat und Gewerbe. Faire Konditionen, persönliche Beratung, lokale Abholung — TFP Bau Mietpark.">
+<meta name="description" content="Baumaschinen, Anhänger & Geräte mieten in Hagenow: Minibagger, Radlader, Teleskoplader, Arbeitsbühnen, Anhänger, Stein- & Fugensägen, Rüttelplatten u. v. m. Für Privat & Gewerbe — faire Tagespreise, persönliche Beratung, Abholung in Hagenow.">
 <meta name="theme-color" content="#1b3c8c">
 <link rel="icon" type="image/png" sizes="48x48" href="assets/favicon-48.png">
 <link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
@@ -215,7 +215,9 @@
   .wa-float:hover .tip{opacity:1}
 
   @media(max-width:900px){
-    .hero-inner{grid-template-columns:1fr;gap:40px}
+    .hero-inner{grid-template-columns:minmax(0,1fr);gap:40px}
+    .hero-text{min-width:0}
+    .hero-eyebrow{max-width:100%;flex-wrap:wrap}
     .book-card{max-width:440px}
     .fleet-grid{grid-template-columns:1fr}
     .why-grid{grid-template-columns:1fr 1fr}
@@ -233,6 +235,31 @@
     .hero-ctas .btn{width:100%;justify-content:center}
   }
   @media(prefers-reduced-motion:reduce){*{animation:none !important;transition:none !important}}
+
+  /* Mietpark: Kategorie-Filter + Produktkarten */
+  .fleet-filter{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:-12px auto 38px;max-width:920px}
+  .fleet-filter button{font-family:inherit;font-size:14px;font-weight:600;color:var(--text-muted);background:var(--surface);border:1px solid var(--border);padding:9px 16px;border-radius:30px;cursor:pointer;transition:.2s;white-space:nowrap;box-shadow:0 1px 3px rgba(20,40,90,.05)}
+  .fleet-filter button:hover{border-color:var(--border-blue);color:var(--blue)}
+  .fleet-filter button.active{background:var(--blue);border-color:var(--blue);color:#fff}
+  .fleet-grid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr))}
+  .fleet-card .fleet-visual{height:200px;background:linear-gradient(135deg,#f3f6fb,#e7edf6)}
+  .fleet-card .fleet-visual img{width:100%;height:100%;object-fit:contain;padding:18px;mix-blend-mode:multiply}
+  .fleet-card[hidden]{display:none}
+  .fleet-cta .fleet-visual svg{width:64px;height:64px;color:rgba(27,60,140,.35)}
+  .fleet-count{text-align:center;color:var(--text-muted);font-size:14px;font-weight:600;margin:6px 0 4px}
+  @media(max-width:560px){.fleet-filter{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;margin-bottom:28px;padding-bottom:8px;-webkit-overflow-scrolling:touch}}
+  /* Mobiles Navigations-Menü */
+  .burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  .burger.open span:nth-child(2){opacity:0}
+  .burger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  @media(max-width:900px){
+    .nav-inner{position:relative}
+    .nav-links{position:absolute;top:calc(100% + 12px);left:0;right:0;flex-direction:column;align-items:stretch;gap:4px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 18px 44px rgba(20,40,90,.18);padding:12px;display:none}
+    .nav-links.open{display:flex}
+    .nav-links a{padding:13px 14px;border-radius:10px;font-size:16px;color:var(--text)}
+    .nav-links a:hover{background:var(--surface-2);color:var(--blue)}
+    .nav-links .nav-cta{justify-content:center;text-align:center;margin-top:6px}
+  }
 </style>
 </head>
 <body>
@@ -272,7 +299,7 @@
     <div class="hero-text">
       <div class="hero-eyebrow"><span class="pulse"></span> Baumaschinen und Anhängervermietung in Hagenow</div>
       <h1>Die richtige Maschine für dein <span class="accent">Projekt</span> — flexibel gemietet.</h1>
-      <p class="lead">Vom Minibagger bis zum leistungsstarken Holzhäcksler: Im TFP Bau Mietpark findest du moderne Baumaschinen und Forstgeräte zur flexiblen Miete. Für Gewerbe und Privatpersonen — mit fairen Konditionen und persönlicher Beratung.</p>
+      <p class="lead">Vom Minibagger über Radlader, Teleskoplader und Arbeitsbühnen bis zu Anhängern, Sägen und Verdichtungsgeräten: Im TFP Bau Mietpark mietest du über 35 Maschinen und Anhänger zu fairen Tagespreisen — für Gewerbe und Privat, mit persönlicher Beratung und Abholung in Hagenow.</p>
       <div class="usp-row">
         <div class="usp"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg> Privat &amp; Gewerbe</div>
         <div class="usp"><svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg> Faire Konditionen</div>
@@ -299,15 +326,21 @@
       <p class="sub">In 30 Sekunden zur unverbindlichen Anfrage — wir melden uns schnellstmöglich.</p>
       <form action="https://formsubmit.co/vermietung@tfpbau-mietpark-hagenow.de" method="POST">
         <input type="hidden" name="_subject" value="Neue Mietanfrage über die Website">
+        <input type="hidden" name="Gewünschtes Gerät" id="wunschgeraet" value="">
         <input type="text" name="_honey" style="display:none">
         <div class="field">
           <label for="gtype">Gerät</label>
           <select id="gtype" name="Gerät">
-            <option>Minibagger</option>
-            <option>Holzhäcksler</option>
-            <option>Rüttelplatte / Stampfer</option>
-            <option>Stromerzeuger</option>
-            <option>Anhänger</option>
+            <option value="">Bitte wählen …</option>
+            <option>Bagger</option>
+            <option>Radlader &amp; Teleskoplader</option>
+            <option>Arbeitsbühne</option>
+            <option>Säge / Schneider</option>
+            <option>Schleifen / Fräsen / Verdichten</option>
+            <option>Garten &amp; Forst</option>
+            <option>Transport &amp; Heben</option>
+            <option>Strom &amp; Baustelle</option>
+            <option>Anhänger &amp; Transporter</option>
             <option>Anderes / weiß noch nicht</option>
           </select>
         </div>
@@ -348,79 +381,524 @@
     <div class="sec-head">
       <div class="sec-eyebrow">Unser Mietpark</div>
       <h2>Moderne Maschinen für Bau, Garten &amp; Forst</h2>
-      <p>Ob Erdarbeiten, Gartenprojekt oder Holzarbeiten — wähle dein Gerät und frag unverbindlich an.</p>
+      <p>Über 35 Maschinen und Anhänger — von Bagger bis Anhänger. Wähle eine Kategorie, finde dein Gerät und frag unverbindlich an.</p>
     </div>
-    <div class="fleet-grid">
+    <div class="fleet-filter" id="fleet-filter">
+      <button class="active" data-filter="all">Alle</button>
+      <button data-filter="bagger">Bagger</button>
+      <button data-filter="lader">Radlader &amp; Teleskoplader</button>
+      <button data-filter="buehne">Arbeitsbühnen</button>
+      <button data-filter="saegen">Sägen &amp; Schneiden</button>
+      <button data-filter="boden">Schleifen, Fräsen &amp; Verdichten</button>
+      <button data-filter="garten">Garten &amp; Forst</button>
+      <button data-filter="heben">Transport &amp; Heben</button>
+      <button data-filter="baustelle">Strom &amp; Baustelle</button>
+      <button data-filter="anhaenger">Anhänger &amp; Transporter</button>
+    </div>
 
-      <div class="fleet-card highlight">
-        <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Beliebt</span>
-        <div class="fleet-visual v1">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M3 19h9v-3H4l-1 3zM12 16l2-7 5 2-1.5 5M14 9l3-4 3 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="6" cy="20" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="10" cy="20" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span class="price-tag">Preis auf Anfrage</span>
+    <div class="fleet-grid" id="fleet-grid">
+
+      <article class="fleet-card highlight" data-cat="bagger">
+        <div class="fleet-visual">
+          <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Beliebt</span>
+          <img src="assets/mietpark/17-minibagger-kubota-u10.jpg" alt="Minibagger Kubota U10 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">96 €/Tag</span>
         </div>
         <div class="fleet-body">
-          <h3>Minibagger</h3>
-          <p>Kompakt und wendig für Erd- und Grabarbeiten — ideal für Garten-, Landschafts- und Tiefbau auf engem Raum.</p>
-          <div class="fleet-tags"><span>Erdarbeiten</span><span>kompakt</span><span>Privat &amp; Gewerbe</span></div>
-          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <h3>Minibagger Kubota U10</h3>
+          <p>Kompakter 1-Tonnen-Minibagger Kubota U10 für enge Gräben und Gartenprojekte.</p>
+          <div class="fleet-tags"><span>1,0 t</span><span>Grabarbeiten</span><span>kompakt</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Minibagger Kubota U10" data-cat-label="Bagger">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-      </div>
+      </article>
 
-      <div class="fleet-card highlight">
-        <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Highlight</span>
-        <div class="fleet-visual v2">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M3 8l6-3 2 4M9 5l-2 6h6l2-5M14 6h5a2 2 0 012 2v6a2 2 0 01-2 2h-7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="18" r="2.4" stroke="currentColor" stroke-width="1.5"/><circle cx="16" cy="18" r="2.4" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span class="price-tag">Preis auf Anfrage</span>
+      <article class="fleet-card highlight" data-cat="bagger">
+        <div class="fleet-visual">
+          <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Neuwertig</span>
+          <img src="assets/mietpark/22-minibagger-kubota-u27-4.png" alt="Minibagger Kubota U27-4 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">131 €/Tag</span>
         </div>
         <div class="fleet-body">
-          <h3>Holzhäcksler</h3>
-          <p>Leistungsstark für Garten- und Landschaftsbau. Verwandelt Äste und Grünschnitt schnell in handliches Häckselgut.</p>
-          <div class="fleet-tags"><span>Forst &amp; Garten</span><span>leistungsstark</span><span>Grünschnitt</span></div>
-          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <h3>Minibagger Kubota U27-4</h3>
+          <p>Neuwertiger Kubota U27-4 (2,6 t) mit drei Schaufeln und Schwenklöffel.</p>
+          <div class="fleet-tags"><span>2,6 t</span><span>Grabtiefe 2,82 m</span><span>3 Schaufeln</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Minibagger Kubota U27-4" data-cat-label="Bagger">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-      </div>
+      </article>
 
-      <div class="fleet-card">
-        <div class="fleet-visual v3">
-          <svg viewBox="0 0 24 24" fill="none"><rect x="4" y="13" width="16" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 13V9a4 4 0 018 0v4M10 22h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="price-tag">Preis auf Anfrage</span>
+      <article class="fleet-card" data-cat="bagger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/32-minibagger-tb216.jpg" alt="Minibagger Takeuchi TB 216 (1,6 t) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">119 €/Tag</span>
         </div>
         <div class="fleet-body">
-          <h3>Rüttelplatte / Stampfer</h3>
-          <p>Für die zuverlässige Verdichtung von Boden, Schotter und Pflasterflächen — Pflicht bei jedem stabilen Untergrund.</p>
-          <div class="fleet-tags"><span>Verdichtung</span><span>Pflasterbau</span></div>
-          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <h3>Minibagger Takeuchi TB 216 (1,6 t)</h3>
+          <p>Takeuchi TB 216 (1,6 t) — wendiger Minibagger mit drei Schaufeln.</p>
+          <div class="fleet-tags"><span>1,6 t</span><span>3 Schaufeln</span><span>kompakt</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Minibagger Takeuchi TB 216 (1,6 t)" data-cat-label="Bagger">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-      </div>
+      </article>
 
-      <div class="fleet-card">
-        <div class="fleet-visual v4">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M13 2L4 14h6l-1 8 9-12h-6l1-8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span class="price-tag">Preis auf Anfrage</span>
+      <article class="fleet-card" data-cat="bagger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/38-minibagger-kubota-kx060.png" alt="Minibagger Kubota KX 060 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">167 €/Tag</span>
         </div>
         <div class="fleet-body">
-          <h3>Stromerzeuger</h3>
-          <p>Mobile Stromversorgung für Baustelle, Werkstatt oder Veranstaltung — überall dort, wo kein Netz verfügbar ist.</p>
-          <div class="fleet-tags"><span>netzunabhängig</span><span>Baustelle</span></div>
-          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <h3>Minibagger Kubota KX 060</h3>
+          <p>Kubota KX 060 (6-t-Klasse) mit umfangreichem Schaufelsortiment &amp; Siebschaufel.</p>
+          <div class="fleet-tags"><span>6-t-Klasse</span><span>viele Schaufeln</span><span>Staffelpreis</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Minibagger Kubota KX 060" data-cat-label="Bagger">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-      </div>
+      </article>
 
-      <div class="fleet-card">
-        <div class="fleet-visual v5">
-          <svg viewBox="0 0 24 24" fill="none"><path d="M2 15h14V9H2zM16 12h3l3 3M2 18h.01" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/><circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/></svg>
-          <span class="price-tag">Preis auf Anfrage</span>
+      <article class="fleet-card" data-cat="lader">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/14-radlader-liebherr-506.png" alt="Radlader Liebherr L 506 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">160 €/Tag</span>
         </div>
         <div class="fleet-body">
-          <h3>Anhänger</h3>
-          <p>Zum sicheren Transport von Maschinen, Material oder Grünschnitt — passend zu deinem Mietgerät dazubuchen.</p>
-          <div class="fleet-tags"><span>Transport</span><span>Zubehör</span></div>
-          <a href="#anfragen" class="fleet-link">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <h3>Radlader Liebherr L 506</h3>
+          <p>Kompakter Liebherr-Radlader L 506 mit 0,8-m³-Schaufel und Allradlenkung.</p>
+          <div class="fleet-tags"><span>5,2 t</span><span>Schaufel 0,8 m³</span><span>Allrad</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Radlader Liebherr L 506" data-cat-label="Radlader &amp; Teleskoplader">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-      </div>
+      </article>
 
-      <div class="fleet-card">
-        <div class="fleet-visual v3">
+      <article class="fleet-card" data-cat="lader">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/15-radlader-kramer-5035.png" alt="Radlader Kramer 5035 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">131 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Radlader Kramer 5035</h3>
+          <p>Wendiger Kramer-Radlader 5035 mit Schnellwechsler — ideal für enge Baustellen.</p>
+          <div class="fleet-tags"><span>1,7 t</span><span>Kipplast 1.250 kg</span><span>Allrad</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Radlader Kramer 5035" data-cat-label="Radlader &amp; Teleskoplader">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="lader">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/18-teleskoplader-kramer-1245.jpg" alt="Teleskoplader Kramer 1245 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">143 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Teleskoplader Kramer 1245</h3>
+          <p>Kramer-Teleskoplader 1245 — hebt bis 4,3 m mit Allradlenkung.</p>
+          <div class="fleet-tags"><span>Hubhöhe 4,3 m</span><span>2,7 t</span><span>Allrad</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Teleskoplader Kramer 1245" data-cat-label="Radlader &amp; Teleskoplader">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card highlight" data-cat="lader">
+        <div class="fleet-visual">
+          <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Highlight</span>
+          <img src="assets/mietpark/21-teleskoplader-merlo-roto-3816.jpg" alt="Roto-Teleskoplader Merlo 38.16 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">297 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Roto-Teleskoplader Merlo 38.16</h3>
+          <p>Merlo Roto 38.16 — rotierender Teleskoplader, 15,7 m Hub, 3,8 t Traglast.</p>
+          <div class="fleet-tags"><span>Hub 15,7 m</span><span>Traglast 3,8 t</span><span>Rotor 360°</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Roto-Teleskoplader Merlo 38.16" data-cat-label="Radlader &amp; Teleskoplader">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="buehne">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/19-arbeitsbuehne-magni-dab18rt.png" alt="Arbeitsbühne Magni DAB 18 RT mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">238 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Arbeitsbühne Magni DAB 18 RT</h3>
+          <p>Magni Teleskop-Arbeitsbühne bis 18 m Arbeitshöhe — Diesel, Allrad, 360°.</p>
+          <div class="fleet-tags"><span>Arbeitshöhe 18 m</span><span>Diesel</span><span>Allrad</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Arbeitsbühne Magni DAB 18 RT" data-cat-label="Arbeitsbühne">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="buehne">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/36-anhaenger-arbeitsbuehne-dino180xt.jpg" alt="Anhänger-Arbeitsbühne Dino 180XT mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">238 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Anhänger-Arbeitsbühne Dino 180XT</h3>
+          <p>Dino 180XT Anhänger-Arbeitsbühne — 18 m Arbeitshöhe, 11,2 m seitlich.</p>
+          <div class="fleet-tags"><span>Arbeitshöhe 18 m</span><span>seitl. 11,2 m</span><span>Anhänger</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Anhänger-Arbeitsbühne Dino 180XT" data-cat-label="Arbeitsbühne">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="saegen">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/08-steinsaege-jumbo651.jpg" alt="Steintrennsäge Clipper Jumbo 651 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">50 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Steintrennsäge Clipper Jumbo 651</h3>
+          <p>Nass-Schneidtisch Clipper Jumbo 651 für Kalksandstein, Beton &amp; Poroton.</p>
+          <div class="fleet-tags"><span>KS · Beton · Poroton</span><span>Nass-Schnitt</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Steintrennsäge Clipper Jumbo 651" data-cat-label="Säge / Schneider">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="saegen">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/10-stein-bandsaege.jpg" alt="Stein-Bandsäge mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">40 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Stein-Bandsäge</h3>
+          <p>Bandsäge für Porenbeton, Ziegel &amp; Steine — präzise und staubarm.</p>
+          <div class="fleet-tags"><span>Stein &amp; Ziegel</span><span>Bandsäge</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Stein-Bandsäge" data-cat-label="Säge / Schneider">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="saegen">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/12-fliesenschneider-tr202.jpg" alt="Fliesenschneider Clipper TR 202 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">25 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Fliesenschneider Clipper TR 202</h3>
+          <p>Norton Clipper TR 202 — präziser Nass-Fliesenschneider bis 650 mm.</p>
+          <div class="fleet-tags"><span>Schnitt 650 mm</span><span>Fliesen &amp; Feinsteinzeug</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Fliesenschneider Clipper TR 202" data-cat-label="Säge / Schneider">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="saegen">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/13-nassschneider-cm352.png" alt="Nassschneider Clipper CM 352 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">35 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Nassschneider Clipper CM 352</h3>
+          <p>Norton Clipper CM 352 — Steintrennsäge mit großem Schneidtisch (1.100 × 600 mm).</p>
+          <div class="fleet-tags"><span>Tisch 1.100×600 mm</span><span>Schnitt 170 mm</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Nassschneider Clipper CM 352" data-cat-label="Säge / Schneider">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="saegen">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/16-fugenschneider-cs451.jpg" alt="Fugenschneider Norton CS 451 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">50 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Fugenschneider Norton CS 451</h3>
+          <p>Norton Fugenschneider CS 451 für saubere Schnitte in Beton &amp; Asphalt bis 165 mm.</p>
+          <div class="fleet-tags"><span>Schnitt 165 mm</span><span>Ø 450 mm</span><span>Benzin</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Fugenschneider Norton CS 451" data-cat-label="Säge / Schneider">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="saegen">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/35-nassschneider-cm.png" alt="Steinschneider Clipper CM (Gehrung) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">36 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Steinschneider Clipper CM (Gehrung)</h3>
+          <p>Clipper CM 352 Steinschneider mit Gehrungsschnitt bis 700 mm.</p>
+          <div class="fleet-tags"><span>Gehrungsschnitt</span><span>Schnitt 700 mm</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Steinschneider Clipper CM (Gehrung)" data-cat-label="Säge / Schneider">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="boden">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/02-flaschenruettler.png" alt="Beton-Flaschenrüttler mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">20 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Beton-Flaschenrüttler</h3>
+          <p>Flaschen-/Innenrüttler für die blasenfreie Verdichtung von Frischbeton.</p>
+          <div class="fleet-tags"><span>Innenrüttler</span><span>Beton</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Beton-Flaschenrüttler" data-cat-label="Schleifen / Fräsen / Verdichten">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="boden">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/04-ruettelplatte.jpg" alt="Rüttelplatte 75–710 kg mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">ab 59 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Rüttelplatte 75–710 kg</h3>
+          <p>Bomag- &amp; Ammann-Rüttelplatten von 75 bis 710 kg für jede Verdichtungsaufgabe.</p>
+          <div class="fleet-tags"><span>75–710 kg</span><span>Bomag / Ammann</span><span>Diesel</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Rüttelplatte 75–710 kg" data-cat-label="Schleifen / Fräsen / Verdichten">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="boden">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/09-bodenschleifmaschine.png" alt="Boden-Schleifmaschine mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">ab 40 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Boden-Schleifmaschine</h3>
+          <p>Schleifmaschinen für Holzböden, Ränder und Flächen — inkl. Schleifmittel.</p>
+          <div class="fleet-tags"><span>Boden &amp; Estrich</span><span>inkl. Schleifmittel</span><span>Preis VB</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Boden-Schleifmaschine" data-cat-label="Schleifen / Fräsen / Verdichten">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="boden">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/37-betonschleifmaschine-fraese.png" alt="Beton-Schleifmaschine / Fräse mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">53 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Beton-Schleifmaschine / Fräse</h3>
+          <p>Beton-Schleifmaschine/Fräse inkl. Staubsauger für glatte Betonflächen.</p>
+          <div class="fleet-tags"><span>Beton</span><span>mit Staubsauger</span><span>Fräse</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Beton-Schleifmaschine / Fräse" data-cat-label="Schleifen / Fräsen / Verdichten">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="garten">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/06-stihl-bt131-erdbohrer.png" alt="Stihl BT 131 Erdbohrer mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">59 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Stihl BT 131 Erdbohrer</h3>
+          <p>Stihl-Erdbohrgerät mit 200- und 300-mm-Bohrer für Pfosten, Zäune &amp; Pflanzlöcher.</p>
+          <div class="fleet-tags"><span>Ø 200 &amp; 300 mm</span><span>Benzin</span><span>Staffelpreis</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Stihl BT 131 Erdbohrer" data-cat-label="Garten &amp; Forst">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card highlight" data-cat="garten">
+        <div class="fleet-visual">
+          <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Beliebt</span>
+          <img src="assets/mietpark/26-holzhaecksler.jpg" alt="Holzhäcksler (bis Ø 150 mm) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">220 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Holzhäcksler (bis Ø 150 mm)</h3>
+          <p>Benzin-Holzhäcksler bis Ø 150 mm — verwandelt Äste schnell in Häckselgut.</p>
+          <div class="fleet-tags"><span>bis Ø 150 mm</span><span>750 kg</span><span>Benzin</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Holzhäcksler (bis Ø 150 mm)" data-cat-label="Garten &amp; Forst">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="heben">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/03-akkustapler-hubwagen.png" alt="Akku-Hubwagen 1.500 kg mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">20 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Akku-Hubwagen 1.500 kg</h3>
+          <p>Akku-Hochhubwagen für Paletten bis 1.500 kg — leises, müheloses Stapeln im Lager.</p>
+          <div class="fleet-tags"><span>1.500 kg</span><span>Akku</span><span>Hub 105 mm</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Akku-Hubwagen 1.500 kg" data-cat-label="Transport &amp; Heben">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card highlight" data-cat="heben">
+        <div class="fleet-visual">
+          <span class="hl-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 1l3 6 6 .9-4.5 4.3L18 18l-6-3-6 3 1.5-5.8L3 7.9 9 7z"/></svg> Beliebt</span>
+          <img src="assets/mietpark/11-mini-dumper-mucktruck.png" alt="Mini-Dumper Muck-Truck Max II mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">53 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Mini-Dumper Muck-Truck Max II</h3>
+          <p>Allrad-Motorschubkarre Muck-Truck Max II — bis 550 kg, fährt sogar Treppen.</p>
+          <div class="fleet-tags"><span>bis 550 kg</span><span>4×4-Antrieb</span><span>kippbare Mulde</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Mini-Dumper Muck-Truck Max II" data-cat-label="Transport &amp; Heben">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="baustelle">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/01-stromaggregat-8kw.jpg" alt="Stromerzeuger 8 kW (Benzin) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">25 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Stromerzeuger 8 kW (Benzin)</h3>
+          <p>Mobile Stromversorgung für Baustelle, Werkstatt oder Veranstaltung — überall ohne Netzanschluss.</p>
+          <div class="fleet-tags"><span>8 kW</span><span>Benzin</span><span>netzunabhängig</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Stromerzeuger 8 kW (Benzin)" data-cat-label="Strom &amp; Baustelle">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="baustelle">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/07-luftentfeuchter.jpg" alt="Bautrockner / Luftentfeuchter mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">12 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Bautrockner / Luftentfeuchter</h3>
+          <p>Leistungsstarker Bautrockner für schnelle Raum- und Neubautrocknung.</p>
+          <div class="fleet-tags"><span>Raumtrocknung</span><span>mobil</span><span>Preis VB</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Bautrockner / Luftentfeuchter" data-cat-label="Strom &amp; Baustelle">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="baustelle">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/20-bau-wc-container.png" alt="Bau-WC-Container (Doppelkabine) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">370 €/Monat</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Bau-WC-Container (Doppelkabine)</h3>
+          <p>Bau-WC-Container mit Doppelkabine, Licht und Heizung — Monatsmiete.</p>
+          <div class="fleet-tags"><span>Doppelkabine</span><span>Licht &amp; Heizung</span><span>Monatsmiete</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Bau-WC-Container (Doppelkabine)" data-cat-label="Strom &amp; Baustelle">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/05-autotrailer-35t.png" alt="Autotransporter-Anhänger 3,5 t mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">59 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Autotransporter-Anhänger 3,5 t</h3>
+          <p>Tandem-Autotransporter inkl. Auffahrrampen — sicherer Transport von Pkw &amp; Maschinen.</p>
+          <div class="fleet-tags"><span>3,5 t</span><span>Auffahrrampen</span><span>Tandemachse</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Autotransporter-Anhänger 3,5 t" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/23-kofferanhaenger-750kg.jpg" alt="Kofferanhänger 750 kg mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">40 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Kofferanhänger 750 kg</h3>
+          <p>Geschlossener Humbaur-Kofferanhänger 750 kg — wettergeschützter Transport.</p>
+          <div class="fleet-tags"><span>750 kg</span><span>geschlossen</span><span>Humbaur</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Kofferanhänger 750 kg" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/24-transporter-sprinter-317.png" alt="Transporter MB Sprinter 317 mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">90 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Transporter MB Sprinter 317</h3>
+          <p>Mercedes Sprinter 317 (Pritsche, 3,5 t) — Automatik, Rückfahrkamera, AHK.</p>
+          <div class="fleet-tags"><span>3,5 t</span><span>Pritsche 4,30 m</span><span>inkl. 150 km</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Transporter MB Sprinter 317" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/25-anhaenger-25t.jpg" alt="Anhänger 2,5 t mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">40 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Anhänger 2,5 t</h3>
+          <p>Robuster offener Anhänger 2,5 t (3,10 × 1,60 m) für Material &amp; Grünschnitt.</p>
+          <div class="fleet-tags"><span>2,5 t</span><span>3,10 × 1,60 m</span><span>offen</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Anhänger 2,5 t" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/27-planenanhaenger-35t-60.jpg" alt="Planenanhänger 3,5 t (6,10 m) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">60 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Planenanhänger 3,5 t (6,10 m)</h3>
+          <p>Planenanhänger 3,5 t mit Schiebeplane, Rampen und Seilwinde (6,10 m).</p>
+          <div class="fleet-tags"><span>3,5 t</span><span>Schiebeplane</span><span>Rampen &amp; Seilwinde</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Planenanhänger 3,5 t (6,10 m)" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/28-kofferanhaenger-27t.png" alt="Kofferanhänger 2,7 t mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">50 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Kofferanhänger 2,7 t</h3>
+          <p>Geschlossener Kofferanhänger 2,7 t (3,70 m) — trockener, sicherer Transport.</p>
+          <div class="fleet-tags"><span>2,7 t</span><span>geschlossen</span><span>3,70 m</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Kofferanhänger 2,7 t" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/29-autotransporter-35t.png" alt="Autotransporter-Anhänger 3,5 t (6,10 m) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">60 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Autotransporter-Anhänger 3,5 t (6,10 m)</h3>
+          <p>Autotransporter 3,5 t (6,10 m) mit Rampen — auch Radgurte erhältlich.</p>
+          <div class="fleet-tags"><span>3,5 t</span><span>6,10 m</span><span>Auffahrrampen</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Autotransporter-Anhänger 3,5 t (6,10 m)" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/30-baumaschinenanhaenger-35t.jpg" alt="Baumaschinen-Anhänger 3,5 t mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">45 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Baumaschinen-Anhänger 3,5 t</h3>
+          <p>Kompakter Baumaschinen-Anhänger 3,5 t mit Rampen für Bagger &amp; Geräte.</p>
+          <div class="fleet-tags"><span>3,5 t</span><span>mit Rampen</span><span>kompakt</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Baumaschinen-Anhänger 3,5 t" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/31-planenanhaenger-35t-50.jpg" alt="Planenanhänger 3,5 t (4,05 m) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">50 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Planenanhänger 3,5 t (4,05 m)</h3>
+          <p>Planenanhänger 3,5 t mit Schiebeplane (4,05 m) — flexibel beladbar.</p>
+          <div class="fleet-tags"><span>3,5 t</span><span>Schiebeplane</span><span>4,05 m</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Planenanhänger 3,5 t (4,05 m)" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/33-schwerlastanhaenger-35t.webp" alt="Schwerlast-Anhänger 3,5 t (3-Achser) mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">60 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Schwerlast-Anhänger 3,5 t (3-Achser)</h3>
+          <p>Dreiachs-Schwerlastanhänger 3,5 t mit abnehmbaren Seitenwänden &amp; Holzboden.</p>
+          <div class="fleet-tags"><span>3,5 t</span><span>3-Achser</span><span>Seitenwände abnehmbar</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Schwerlast-Anhänger 3,5 t (3-Achser)" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card" data-cat="anhaenger">
+        <div class="fleet-visual">
+          <img src="assets/mietpark/34-anhaenger-2000kg.jpg" alt="Planenanhänger 2.000 kg mieten – TFP Bau Mietpark Hagenow" loading="lazy" decoding="async">
+          <span class="price-tag">48 €/Tag</span>
+        </div>
+        <div class="fleet-body">
+          <h3>Planenanhänger 2.000 kg</h3>
+          <p>Planenanhänger 2.000 kg (145 × 265 cm) — vielseitig und wettergeschützt.</p>
+          <div class="fleet-tags"><span>2.000 kg</span><span>Plane</span><span>145 × 265 cm</span></div>
+          <a href="#anfragen" class="fleet-link" data-geraet="Planenanhänger 2.000 kg" data-cat-label="Anhänger &amp; Transporter">Verfügbarkeit anfragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </article>
+
+      <article class="fleet-card fleet-cta">
+        <div class="fleet-visual">
           <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v4M12 16h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </div>
         <div class="fleet-body">
@@ -429,9 +907,11 @@
           <div class="fleet-tags"><span>persönliche Beratung</span></div>
           <a href="#kontakt" class="fleet-link">Jetzt fragen <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
         </div>
-      </div>
+      </article>
 
     </div>
+    <p class="fleet-count" id="fleet-count"></p>
+    <p class="fleet-note"><svg viewBox="0 0 24 24" fill="none"><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="2"/></svg> Alle Preise pro Tag inkl. MwSt., zzgl. Kaution. Verbrauchsmaterial (z.&nbsp;B. Diamantscheiben) nach Verbrauch. „VB" = Verhandlungsbasis. Bilder zeigen beispielhaft den Gerätetyp.</p>
   </div>
 </section>
 
@@ -564,10 +1044,11 @@
       </div>
       <div class="foot-col">
         <h4>Mietpark</h4>
-        <a href="#mietpark">Minibagger</a>
-        <a href="#mietpark">Holzhäcksler</a>
-        <a href="#mietpark">Rüttelplatte &amp; mehr</a>
-        <a href="#anfragen">Maschine anfragen</a>
+        <a href="#mietpark">Bagger &amp; Radlader</a>
+        <a href="#mietpark">Arbeitsbühnen</a>
+        <a href="#mietpark">Anhänger &amp; Transporter</a>
+        <a href="#mietpark">Sägen &amp; Schneider</a>
+        <a href="#anfragen">Gerät anfragen</a>
       </div>
       <div class="foot-col">
         <h4>Unternehmen</h4>
@@ -601,7 +1082,7 @@
   "url": "https://www.tfpbau-mietpark-hagenow.de/",
   "logo": "https://www.tfpbau-mietpark-hagenow.de/assets/favicon-512.png",
   "image": "https://www.tfpbau-mietpark-hagenow.de/assets/firmenschild.jpg",
-  "description": "Baumaschinen und Forstgeräte mieten in Hagenow – für Privat und Gewerbe. Minibagger, Holzhäcksler, Rüttelplatte und mehr.",
+  "description": "Baumaschinen, Anhänger und Geräte mieten in Hagenow – für Privat und Gewerbe. Minibagger, Radlader, Teleskoplader, Arbeitsbühnen, Anhänger, Stein- und Fugensägen, Rüttelplatten und mehr.",
   "telephone": "+491721569403",
   "email": "vermietung@tfpbau-mietpark-hagenow.de",
   "foundingDate": "1999",
@@ -641,6 +1122,57 @@
       }
     });
   });
+
+  // Mietpark: Kategorie-Filter + Formular-Vorbelegung
+  (function(){
+    var pills=document.querySelectorAll('.fleet-filter button');
+    var cards=document.querySelectorAll('#fleet-grid .fleet-card');
+    var countEl=document.getElementById('fleet-count');
+    function apply(f){
+      var n=0;
+      cards.forEach(function(c){
+        if(c.classList.contains('fleet-cta')){ c.hidden=(f!=='all'); return; }
+        var show=(f==='all')||c.getAttribute('data-cat')===f;
+        c.hidden=!show; if(show) n++;
+      });
+      if(countEl) countEl.textContent=(f==='all')?(n+' Geräte & Anhänger im Mietpark'):(n+' Treffer in dieser Kategorie');
+    }
+    pills.forEach(function(b){
+      b.addEventListener('click',function(){
+        pills.forEach(function(x){x.classList.remove('active')});
+        b.classList.add('active');
+        apply(b.getAttribute('data-filter'));
+      });
+    });
+    var sel=document.getElementById('gtype'), wunsch=document.getElementById('wunschgeraet');
+    document.querySelectorAll('.fleet-link[data-geraet]').forEach(function(a){
+      a.addEventListener('click',function(){
+        var name=a.getAttribute('data-geraet'), cat=a.getAttribute('data-cat-label');
+        if(wunsch) wunsch.value=name;
+        if(sel&&cat){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].text===cat){ sel.selectedIndex=i; break; } } }
+      });
+    });
+    apply('all');
+  })();
+
+  // Mobiles Menü (Burger)
+  (function(){
+    var burger=document.querySelector('.burger');
+    var navLinks=document.querySelector('.nav-links');
+    if(!burger||!navLinks) return;
+    burger.addEventListener('click',function(){
+      var open=navLinks.classList.toggle('open');
+      burger.classList.toggle('open',open);
+      burger.setAttribute('aria-expanded',open?'true':'false');
+    });
+    navLinks.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click',function(){
+        navLinks.classList.remove('open');
+        burger.classList.remove('open');
+        burger.setAttribute('aria-expanded','false');
+      });
+    });
+  })();
 </script>
 
 </body>
