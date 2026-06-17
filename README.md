@@ -10,11 +10,11 @@ veröffentlicht über **GitHub Pages** unter **https://www.tfpbau-mietpark-hagen
 | `impressum.html` | Pflicht-Impressum (D) — Platzhalter mit ⚠️ markiert |
 | `datenschutz.html` | Datenschutzerklärung (DSGVO) — Platzhalter mit ⚠️ markiert |
 | `assets/firmenschild.jpg` | Foto des Firmenschilds (Branding-Vorlage / Standortbild) |
-| `assets/mietpark/` | Produktbilder der 38 Vermietartikel (`NN-slug.jpg/.png/.webp`) |
+| `assets/mietpark/` | Produktbilder der 39 Vermietartikel (`NN-slug.jpg/.png/.webp`) |
 | `CNAME` | Custom-Domain für GitHub Pages |
 
 ## Mietpark (Stand: Juni 2026)
-- **38 Vermietartikel** mit echten Tagespreisen (Brutto/Tag inkl. MwSt., teils „VB" / „ab" / Monatsmiete).
+- **39 Vermietartikel** mit echten Tagespreisen (Brutto/Tag inkl. MwSt., teils „VB" / „ab" / Monatsmiete).
 - Sortiert in **9 Kategorien** mit Filter-Leiste (Vanilla-JS): Bagger · Radlader & Teleskoplader ·
   Arbeitsbühnen · Sägen & Schneiden · Schleifen, Fräsen & Verdichten · Garten & Forst ·
   Transport & Heben · Strom & Baustelle · Anhänger & Transporter.
@@ -39,12 +39,13 @@ wirkungsvollsten — sie zeigen den tatsächlichen Mietpark.
 
 Empfohlen, mit eigenem Foto zu ersetzen (Typ/Maßstab nur näherungsweise getroffen):
 - `07-luftentfeuchter`, `18-teleskoplader-kramer-1245` (3D-Render),
-  `24-transporter-sprinter-317` (Kastenwagen statt Pritsche),
-  `27/31/34-planenanhaenger…` (ähnliche Plane-Motive), `33-schwerlastanhaenger-35t` (niedrig aufgelöst).
+  `24-transporter-sprinter-317` (jetzt korrekte weiße Pritsche, aber Händler-Foto mit dezentem Aufbauhersteller-Wasserzeichen),
+  `31/34-planenanhaenger…` (ähnliche Plane-Motive), `33-schwerlastanhaenger-35t` (niedrig aufgelöst).
 
 ## Noch zu erledigen
 - ✅ Echte Tagespreise eingepflegt (Juni 2026).
 - ✅ 38 Vermietartikel + Bilder + Kategorie-Filter ergänzt.
+- ✅ Bildwechsel (Juni 2026): 7 unpassende Geräte-/Anhänger-Bilder durch modellgenaue Hersteller-/Händlerbilder ersetzt (Magni DAB18RT, Bomag-Rüttelplatte, Lägler-Bodenschleifer, Forst ST6P, WC-Doppelcontainer, Sprinter-Pritsche, Planenanhänger) + neue Card „Takeuchi TB 225" (Preis/Daten noch zu bestätigen).
 - Bilder vor Live-Gang prüfen/ersetzen (siehe „Bildrechte").
 - Echte Kundenbewertungen (Bewertungs-Sektion wurde bewusst entfernt).
 - Impressum & Datenschutz finalisieren (siehe ⚠️-Hinweise).
