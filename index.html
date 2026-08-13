@@ -92,9 +92,17 @@
   .book-card .sub{font-size:13px;color:var(--text-muted);margin-bottom:20px}
   .field{margin-bottom:14px}
   .field label{display:block;font-size:12px;font-weight:600;color:var(--text-muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.04em}
-  .field select,.field input{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--text);font-size:15px;font-family:inherit;cursor:pointer}
-  .field select:focus,.field input:focus{outline:none;border-color:var(--blue)}
+  .field select,.field input,.field textarea{width:100%;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--text);font-size:15px;font-family:inherit}
+  .field select,.field input[type="date"]{cursor:pointer}
+  .field textarea{min-height:96px;resize:vertical;line-height:1.5}
+  .field select:focus,.field input:focus,.field textarea:focus{outline:none;border-color:var(--blue)}
   .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .choice-list{display:flex;flex-direction:column;gap:8px}
+  .choice{display:flex;align-items:center;gap:10px;background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:11px 14px;cursor:pointer;font-size:15px;font-weight:600;color:var(--text)}
+  .choice:has(input:checked){border-color:var(--blue);background:var(--blue-dim)}
+  .choice input{width:auto;flex-shrink:0;accent-color:var(--blue);cursor:pointer}
+  .field-hint{display:block;font-size:12px;font-weight:500;color:var(--text-muted);margin-top:6px;text-transform:none;letter-spacing:0;line-height:1.4}
+  .opt-mark{font-weight:500;text-transform:none;letter-spacing:0;color:var(--text-muted)}
   .book-card .btn-primary{width:100%;justify-content:center;margin-top:8px}
   .book-note{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-muted);margin-top:14px;justify-content:center}
   .book-note svg{width:14px;height:14px;color:var(--green)}
@@ -327,15 +335,17 @@
     <!-- Inquiry widget -->
     <div class="book-card" id="anfragen">
       <h3><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/><path d="M16 2v4M8 2v4M3 10h18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg> Maschine anfragen</h3>
-      <p class="sub">In 30 Sekunden zur unverbindlichen Anfrage — wir melden uns schnellstmöglich.</p>
+      <p class="sub">Unverbindlich anfragen — wir melden uns schnellstmöglich mit Verfügbarkeit und Preis.</p>
       <form id="rentForm" action="https://formsubmit.co/vermietung@tfpbau-mietpark-hagenow.de" method="POST">
-        <input type="hidden" name="_subject" value="Neue Mietanfrage über die Website">
+        <input type="hidden" name="Vorgang" value="Neue Mietanfrage über die Website">
+        <input type="hidden" id="rentSubject" name="_subject" value="Neue Mietanfrage über die Website">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
-        <input type="text" name="_honey" style="display:none">
+        <input type="hidden" id="replyto" name="_replyto" value="">
+        <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="field">
           <label for="gtype">Gerät</label>
-          <select id="gtype" name="Gerät">
+          <select id="gtype" name="Gerät" required>
             <option value="">Bitte wählen …</option>
             <optgroup label="Bagger">
               <option>Minibagger Kubota U10</option>
@@ -400,16 +410,50 @@
         <div class="field-row">
           <div class="field">
             <label for="from">Von</label>
-            <input type="date" id="from" name="Von">
+            <input type="date" id="from" name="Von" required>
           </div>
           <div class="field">
             <label for="to">Bis</label>
-            <input type="date" id="to" name="Bis">
+            <input type="date" id="to" name="Bis" required>
           </div>
         </div>
         <div class="field">
-          <label for="contact">Telefon oder E-Mail für Rückmeldung</label>
-          <input type="text" id="contact" name="Kontakt" placeholder="z. B. 0170 1234567" required>
+          <label id="handover-label">Übergabe</label>
+          <div class="choice-list" role="radiogroup" aria-labelledby="handover-label">
+            <label class="choice">
+              <input type="radio" name="Übergabe" value="Abholung in Hagenow" required>
+              <span>Abholung in Hagenow</span>
+            </label>
+            <label class="choice">
+              <input type="radio" name="Übergabe" value="Anlieferung" required>
+              <span>Anlieferung</span>
+            </label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="einsatzort">Einsatzort / Baustellenadresse <span class="opt-mark">(freiwillig)</span></label>
+          <input type="text" id="einsatzort" name="Einsatzort / Baustellenadresse" autocomplete="street-address" placeholder="z. B. Straße, PLZ, Ort — besonders bei Anlieferung">
+        </div>
+        <div class="field">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="Name" autocomplete="name" placeholder="Vor- und Nachname" required>
+        </div>
+        <div class="field">
+          <label for="firma">Firma <span class="opt-mark">(freiwillig)</span></label>
+          <input type="text" id="firma" name="Firma" autocomplete="organization" placeholder="z. B. Musterbau GmbH">
+        </div>
+        <div class="field">
+          <label for="telefon">Telefon</label>
+          <input type="tel" id="telefon" name="Telefon" autocomplete="tel" placeholder="z. B. 0170 1234567" required>
+        </div>
+        <div class="field">
+          <label for="email">E-Mail</label>
+          <input type="email" id="email" name="E-Mail" autocomplete="email" placeholder="z. B. max@firma.de" required>
+        </div>
+        <div class="field">
+          <label for="nachricht">Wofür brauchst du das Gerät?</label>
+          <textarea id="nachricht" name="Nachricht" rows="4" required placeholder="Kurz beschreiben, wofür du das Gerät brauchst — z. B. Garten umgraben, Zufahrt anlegen …"></textarea>
+          <span class="field-hint">Pflichtfeld — ein paar Sätze reichen.</span>
         </div>
         <button type="submit" class="btn btn-primary">Unverbindlich anfragen</button>
       </form>
@@ -1214,12 +1258,21 @@
       });
     });
     var sel=document.getElementById('gtype');
+    var subject=document.getElementById('rentSubject');
+    function syncSubject(){
+      if(!subject) return;
+      var geraet=sel&&sel.value?sel.value.trim():'';
+      subject.value=geraet?('Neue Mietanfrage: '+geraet):'Neue Mietanfrage über die Website';
+    }
+    if(sel) sel.addEventListener('change',syncSubject);
     document.querySelectorAll('.fleet-link[data-geraet]').forEach(function(a){
       a.addEventListener('click',function(){
         var name=a.getAttribute('data-geraet');
         if(sel&&name){ for(var i=0;i<sel.options.length;i++){ if(sel.options[i].text===name){ sel.selectedIndex=i; break; } } }
+        syncSubject();
       });
     });
+    syncSubject();
     apply('all');
   })();
 
@@ -1251,15 +1304,43 @@
     var errEl=document.getElementById('rentError');
     var note=document.querySelector('#anfragen .book-note');
     var endpoint='https://formsubmit.co/ajax/vermietung@tfpbau-mietpark-hagenow.de';
+    var email=document.getElementById('email');
+    var replyto=document.getElementById('replyto');
+    var subject=document.getElementById('rentSubject');
+    var gtype=document.getElementById('gtype');
+    var einsatzort=document.getElementById('einsatzort');
+    function syncMailMeta(){
+      if(replyto&&email) replyto.value=(email.value||'').trim();
+      if(subject){
+        var geraet=gtype&&gtype.value?gtype.value.trim():'';
+        subject.value=geraet?('Neue Mietanfrage: '+geraet):'Neue Mietanfrage über die Website';
+      }
+    }
+    form.querySelectorAll('input[name="Übergabe"]').forEach(function(r){
+      r.addEventListener('change',function(){
+        if(!einsatzort) return;
+        einsatzort.placeholder=r.value==='Anlieferung'
+          ?'Straße, PLZ, Ort der Baustelle'
+          :'z. B. Straße, PLZ, Ort — besonders bei Anlieferung';
+      });
+    });
     form.addEventListener('submit',function(e){
       e.preventDefault();
+      syncMailMeta();
       if(errEl) errEl.hidden=true;
       var orig=btn.textContent;
       btn.disabled=true; btn.textContent='Wird gesendet …';
+      var skipped=[];
+      ['firma','einsatzort'].forEach(function(id){
+        var el=document.getElementById(id);
+        if(el && !el.value.trim()){ el.disabled=true; skipped.push(el); }
+      });
+      var payload=new FormData(form);
+      skipped.forEach(function(el){ el.disabled=false; });
       fetch(endpoint,{
         method:'POST',
         headers:{'Accept':'application/json'},
-        body:new FormData(form)
+        body:payload
       })
       .then(function(r){ return r.json(); })
       .then(function(data){
