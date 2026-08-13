@@ -102,6 +102,7 @@
   .choice:has(input:checked){border-color:var(--blue);background:var(--blue-dim)}
   .choice input{width:auto;flex-shrink:0;accent-color:var(--blue);cursor:pointer}
   .field-hint{display:block;font-size:12px;font-weight:500;color:var(--text-muted);margin-top:6px;text-transform:none;letter-spacing:0;line-height:1.4}
+  .field-hint a{color:var(--blue);font-weight:700}
   .opt-mark{font-weight:500;text-transform:none;letter-spacing:0;color:var(--text-muted)}
   .book-card .btn-primary{width:100%;justify-content:center;margin-top:8px}
   .book-note{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--text-muted);margin-top:14px;justify-content:center}
@@ -416,6 +417,11 @@
             <label for="to">Bis</label>
             <input type="date" id="to" name="Bis" required>
           </div>
+        </div>
+        <div class="field">
+          <label for="zubehoer">Zubehör / Anbaugeräte <span class="opt-mark">(freiwillig)</span></label>
+          <input type="text" id="zubehoer" name="Zubehör / Anbaugeräte" placeholder="z. B. extra Schaufeln, Plane, Netz, Gurte">
+          <span class="field-hint">Falls du unsicher bist, lass das Feld leer und ruf uns an: <a href="tel:+491721569403">0172 1569403</a>.</span>
         </div>
         <div class="field">
           <label id="handover-label">Übergabe</label>
@@ -1331,7 +1337,7 @@
       var orig=btn.textContent;
       btn.disabled=true; btn.textContent='Wird gesendet …';
       var skipped=[];
-      ['firma','einsatzort'].forEach(function(id){
+      ['firma','einsatzort','zubehoer'].forEach(function(id){
         var el=document.getElementById(id);
         if(el && !el.value.trim()){ el.disabled=true; skipped.push(el); }
       });
